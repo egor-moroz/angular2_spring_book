@@ -15,7 +15,7 @@ constructor(private http: Http){
 }
 makeRequest(): void {
   this.loading = true;
-  this.http.request('http://jsonplaceholder.typicode.com/posts/1')
+  this.http.request('http://localhost:8080/rest/book/1')
   .subscribe((res: Response) => {
     this.data = res.json();
     this.loading = false;
