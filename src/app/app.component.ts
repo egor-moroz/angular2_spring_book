@@ -11,7 +11,7 @@ export class AppComponent {
   loading: boolean;
 
 constructor(private http: Http){
-
+  
 }
 makeRequest(): void {
   this.loading = true;
