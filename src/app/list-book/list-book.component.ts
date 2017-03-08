@@ -7,6 +7,7 @@ import { Http, Response } from '@angular/http'
   styleUrls: ['./list-book.component.css']
 })
 export class ListBookComponent implements OnInit {
+
 data: Object;
 loading: boolean;
 
@@ -14,6 +15,7 @@ loading: boolean;
 
   ngOnInit() {
   }
+
 makeRequest(): void {
   this.loading = true;
   this.http.request('http://localhost:8080/rest/book/')
