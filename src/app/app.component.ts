@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Http, Response } from '@angular/http'
 
+import {BookService} from './services/BookService'; 
+
 @Component({
   selector: 'http-root',
+  providers: [BookService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -10,16 +13,8 @@ export class AppComponent {
   data: Object;
   loading: boolean;
 
-constructor(private http: Http){
+constructor(private bookService: BookService){
   
-}
-makeRequest(): void {
-  this.loading = true;
-  this.http.request('http://localhost:8080/rest/book/1')
-  .subscribe((res: Response) => {
-    this.data = res.json();
-    this.loading = false;
-  });
 }
 
 }

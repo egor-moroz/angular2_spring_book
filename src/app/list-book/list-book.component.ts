@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http'
+
+import { BookService } from '../services/BookService';
+import { Response } from '@angular/http'
 
 @Component({
   selector: 'app-list-book',
@@ -8,20 +10,19 @@ import { Http, Response } from '@angular/http'
 })
 export class ListBookComponent implements OnInit {
 
-data: Object;
-loading: boolean;
+  data: Object;
+  loading: boolean;
 
-  constructor(private http: Http) { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
   }
 
-makeRequest(): void {
-  this.loading = true;
-  this.http.request('http://localhost:8080/rest/book/')
-  .subscribe((res: Response) =>{
-    this.data = res.json();
-    this.loading  = false;
-  });
-}
+  makeRequest(): void {
+    this.loading = true;
+    this.bookService.getBooks().subscribe((res: Response) => {
+        this.data = res;
+        this.loading = false;
+      });
+  }
 }
