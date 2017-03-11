@@ -10,12 +10,12 @@
     <div *ngIf="result.length">
         <h1>Results</h1>
         <div class="row">
-            <div class="col-sm-6 col-md-4" *ngFor="let b of results">
+            <div class="col-sm-6 col-md-4" *ngFor="let b of result">
                 <div class="thumbnail">
                     <div class="content">
                         <div class="caption">
                             <p>
-                                <a [routerLink]="['/books', b.id]">
+                                <a [routerLink]="['/book', b.id]">
                             {{ b.title }}
                             </a>
                             </p>

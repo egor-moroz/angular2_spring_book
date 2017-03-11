@@ -1,8 +1,12 @@
-<h2>Book works Basic Request</h2>
+<!--<h2>Book works Basic Request</h2>
 <button type="button" (click)="showBookRequest()">Make Request</button>
 <div *ngIf="loading">loading...</div>
 <pre>{{data | json}}</pre>
 <h2>delete book with id = 1 </h2>
 <button type="button" (click)="deleteBookRequest()">Make Request</button>
-<div *ngIf="loading">loading...</div>
+<div *ngIf="loading">loading...</div>-->
+
+<div *ngIf="book">
+<h1>{{book.title}}</h1>
+<h2>{{book.price}}</h2>
 

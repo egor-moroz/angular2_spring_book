@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { BookService } from '../services/BookService';
+import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -8,30 +11,19 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http'
 })
 export class BookComponent implements OnInit {
 
-data: Object;
-loading: boolean;
+  id: number;
+  book: Object;
 
-  constructor(private http: Http) {
-    
-   }
-
-  ngOnInit() {
+  constructor(private route: ActivatedRoute,private location:Location, private bookService: BookService) {
+ route.params.subscribe(params => { this.id = params['id']; });
   }
 
-showBookRequest(): void {
-  this.loading = true;
-  this.http.request('http://localhost:8080/rest/book/1')
-  .subscribe((res: Response) => {
-    this.data = res.json();
-    this.loading = false;
-  });
-}
-deleteBookRequest(): void {
-  this.http.delete('http://localhost:8080/rest/book/1')
-  .subscribe((res: Response) => {
-    this.data = res.json();
-    this.loading = false;
-  });
-}
+  ngOnInit() {
+    this.bookService.getBook(this.id).subscribe((res: any) => this.renderBook(res));
+  }
+
+  renderBook(res: any): void {
+    this.book = res;
+  }
 
 }
