@@ -1,16 +1,24 @@
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
 
 @Injectable()
 export class BookService {
-    constructor (public http: Http){
+    static BASE_URL: string = 'http://localhost:8080/rest/book/';
+
+    constructor(private http: Http) {
     }
 
-    getBooks(){
-        let queryURL: string =  'http://localhost:8080/rest/book/';
+    
+
+    getBooks() {
+        let queryURL: string = 'http://localhost:8080/rest/book/';
+        return this.http.request(queryURL).map(res => res.json());
+    }
+    getBook(id: number) {
+        let queryURL: string = 'http://localhost:8080/rest/book/${id}';
         return this.http.request(queryURL).map(res => res.json());
     }
 }

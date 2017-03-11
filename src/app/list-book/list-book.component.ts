@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { BookService } from '../services/BookService';
 import { Response } from '@angular/http'
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-book',
@@ -10,7 +10,7 @@ import { Response } from '@angular/http'
 })
 export class ListBookComponent implements OnInit {
 
-  data: Object;
+  result: Object;
   loading: boolean;
 
   constructor(private bookService: BookService) { }
@@ -21,7 +21,7 @@ export class ListBookComponent implements OnInit {
   makeRequest(): void {
     this.loading = true;
     this.bookService.getBooks().subscribe((res: Response) => {
-        this.data = res;
+        this.result = res;
         this.loading = false;
       });
   }

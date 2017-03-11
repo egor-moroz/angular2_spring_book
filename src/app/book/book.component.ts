@@ -27,7 +27,6 @@ showBookRequest(): void {
   });
 }
 deleteBookRequest(): void {
-  
   this.http.delete('http://localhost:8080/rest/book/1')
   .subscribe((res: Response) => {
     this.data = res.json();
