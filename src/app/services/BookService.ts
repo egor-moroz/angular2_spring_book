@@ -12,15 +12,14 @@ export class BookService {
     }
 
     getBooks() {
-        let queryURL: string = 'http://localhost:8080/rest/book/';
-        return this.http.request(queryURL).map(res => res.json());
+        return this.http.request(BASE_URL).map(res => res.json());
     }
     getBook(id: number) {
-        let queryURL: string = `http://localhost:8080/rest/book/${id}`;
+        let queryURL: string = `${BASE_URL}/${id}`;
         return this.http.request(queryURL).map(res => res.json());
     }
     deleteBook(id: number) {
-        let queryURL: string = `http://localhost:8080/rest/book/${id}`;
+        let queryURL: string = `${BASE_URL}/${id}`;
         return this.http.delete(queryURL).map(res => res.json());
     }
     
